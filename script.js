@@ -1,25 +1,25 @@
 
-function submitForm() {
-    const name = document.getElementById("name").value;
-    const country = document.getElementById("country").value;
-    const phone = document.getElementById("phone").value;
-    const countryError = document.getElementById("countryError").textContent;
-    if (name && country && phone && countryError === "") {
-        Swal.fire({
-            title: "Success!",
-            text: "Details are correct!",
-            icon: "success",
-            confirmButtonColor: "#28a745"
-        });
-    } else {
-        Swal.fire({
-            title: "Oops!",
-            text: "Please fill out all fields.",
-            icon: "error",
-            confirmButtonColor: "#dc3545"
-        });
-    }
-}
+// function submitForm() {
+//     const name = document.getElementById("name").value;
+//     const country = document.getElementById("country").value;
+//     const phone = document.getElementById("phone").value;
+//     const countryError = document.getElementById("countryError").textContent;
+//     if (name && country && phone && countryError === "") {
+//         Swal.fire({
+//             title: "Success!",
+//             text: "Details are correct!",
+//             icon: "success",
+//             confirmButtonColor: "#28a745"
+//         });
+//     } else {
+//         Swal.fire({
+//             title: "Oops!",
+//             text: "Please fill out all fields.",
+//             icon: "error",
+//             confirmButtonColor: "#dc3545"
+//         });
+//     }
+// }
 
 
 // function validateCountry() {
