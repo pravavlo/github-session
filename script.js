@@ -22,21 +22,21 @@ function submitForm() {
 }
 
 
-function validateCountry() {
-    const countryInput = document.getElementById("country");
-    const countryError = document.getElementById("countryError");
+// function validateCountry() {
+//     const countryInput = document.getElementById("country");
+//     const countryError = document.getElementById("countryError");
 
-    // Regular expression: Only letters (both uppercase and lowercase) allowed
-    const regex = /^[A-Za-z\s]+$/;
+//     // Regular expression: Only letters (both uppercase and lowercase) allowed
+//     const regex = /^[A-Za-z\s]+$/;
 
-    if (!regex.test(countryInput.value)) {
-        countryError.textContent = "❌ Only alphabets are allowed.";
-        countryInput.style.border = "2px solid red";
-    } else {
-        countryError.textContent = "";
-        countryInput.style.border = "2px solid green";
-    }
-}
+//     if (!regex.test(countryInput.value)) {
+//         countryError.textContent = "❌ Only alphabets are allowed.";
+//         countryInput.style.border = "2px solid red";
+//     } else {
+//         countryError.textContent = "";
+//         countryInput.style.border = "2px solid green";
+//     }
+// }
 
 
 
