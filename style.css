@@ -1,0 +1,89 @@
+/* Fullscreen Background */
+body {
+    background: linear-gradient(to right, #4c4e33, #ffffff);
+    padding: 10px;
+}
+
+/* Center Form with Almost Fullscreen Size */
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 10px;
+}
+
+/* Large Form Card */
+.form-card {
+    width: 90vw; /* Almost Fullscreen */
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding: 50px;
+}
+
+/* Form Title */
+.form-title {
+    color: #4c0ddf;
+    font-size: 40px; /* Large Title */
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Large Input Fields */
+.stylish-input {
+    background: rgba(250, 250, 250, 0.5);
+    border: none;
+    padding: 20px; /* Large Padding */
+    border-radius: 15px;
+    font-size: 24px; /* Large Font */
+    transition: 0.3s ease;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.stylish-input:focus {
+    background: rgba(255, 253, 253, 0.8);
+    outline: none;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Large Submit Button */
+.glossy-button {
+    background: linear-gradient(to right, #28a745, #218838);
+    border: none;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 15px; /* Large Button */
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.glossy-button:hover {
+    background: linear-gradient(to right, #218838, #1e7e34);
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.6);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure labels are aligned to the left */
+.form-label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    color: rgb(12, 11, 11);
+}
+
