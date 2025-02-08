@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for script.js
+name: CI Workflow - Check for submitForm()
 
 # Trigger the workflow on push to the main branch
 on:
@@ -8,7 +8,7 @@ on:
 
 # Jobs to run
 jobs:
-  validate-script:
+  check-submit-form:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,14 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Validate script.js for invalid variable names
-      - name: Validate script.js
-        id: validate-script
+      # Step 2: Check if submitForm() exists in script.js
+      - name: Check for submitForm()
         run: |
-          echo "Checking script.js for invalid variable names..."
-          if grep -E '\b[0-9]+\w*\b|\W+\w*\b' script.js; then
-            echo "::error::Invalid variable names found in script.js! Variables cannot start with numbers or contain special characters."
-            exit 1 # Fail the workflow
+          if grep -q "function submitForm()" script.js; then
+            echo "submitForm() function found in script.js."
           else
-            echo "No invalid variable names found in script.js."
+            echo "::error::submitForm() function not found in script.js!"
+            exit 1 # Fail the workflow
           fi
