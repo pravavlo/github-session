@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Jekyll to GitHub Pages
 
 # Trigger the workflow on push to the main branch
 on:
@@ -16,20 +16,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Ensure gh-pages branch exists
-      - name: Ensure gh-pages branch exists
-        run: |
-          git fetch origin
-          if ! git show-ref --verify --quiet refs/heads/gh-pages; then
-            git checkout --orphan gh-pages
-            git reset --hard
-            git commit --allow-empty -m "Initial gh-pages commit"
-            git push origin gh-pages
-          fi
+      # Step 2: Set up Ruby and Jekyll
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1' # Use the required Ruby version for Jekyll
 
-      # Step 3: Deploy to GitHub Pages
-      - name: GitHub Pages action
+      # Step 3: Install Jekyll and dependencies
+      - name: Install Jekyll
+        run: |
+          gem install bundler jekyll
+          bundle install
+
+      # Step 4: Build the Jekyll site
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ # Deploy the root directory (or specify the folder containing your HTML/CSS/JS files)
+          publish_dir: ./_site # Jekyll outputs the site to the _site directory
