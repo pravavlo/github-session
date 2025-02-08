@@ -9,7 +9,7 @@ on:
 # Jobs to run
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       # Step 1: Checkout the code
@@ -28,8 +28,8 @@ jobs:
           fi
 
       # Step 3: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./ # Deploy the root directory (or specify the folder containing your HTML/CSS/JS files)
