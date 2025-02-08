@@ -33,7 +33,7 @@ jobs:
       - name: Display website link
         run: |
           if [[ "${{ steps.check-submit-form.outputs.status }}" == "success" ]]; then
-            echo "🎉 Success! Visit the congrats website: https://example.com/congrats"
+            echo "🎉 Success! Visit the congrats website: https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMW04aWMydXNuMWFteWdjZGdpMXoyZGdhZDZxMW96NWhkd3F3bm9hbSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qx8pi39Lwm9Xm2audb/giphy.gif"
           else
-            echo "❌ Error! Visit the error website: https://example.com/error"
+            echo "❌ Error! Visit the error website: https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjhsY3dicDlvZXcxMmxjdmg1bmU5Y25jcmJkbWI4cTFqM2p1bmt5NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UHAYP0FxJOmFBuOiC2/giphy.gif"
           fi
