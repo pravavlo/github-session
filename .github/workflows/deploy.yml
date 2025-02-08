@@ -16,7 +16,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Deploy to GitHub Pages
+      # Step 2: Ensure gh-pages branch exists
+      - name: Ensure gh-pages branch exists
+        run: |
+          git fetch origin
+          if ! git show-ref --verify --quiet refs/heads/gh-pages; then
+            git checkout --orphan gh-pages
+            git reset --hard
+            git commit --allow-empty -m "Initial gh-pages commit"
+            git push origin gh-pages
+          fi
+
+      # Step 3: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
