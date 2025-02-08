@@ -1,40 +1,20 @@
-name: Deploy Jekyll to GitHub Pages
+name: Deploy to GitHub Pages
 
-# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
       - main
 
-# Jobs to run
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      # Step 2: Set up Ruby and Jekyll
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1' # Use the required Ruby version for Jekyll
-
-      # Step 3: Install Jekyll and dependencies
-      - name: Install Jekyll
-        run: |
-          gem install bundler jekyll
-          bundle install
-
-      # Step 4: Build the Jekyll site
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
-
-      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site # Jekyll outputs the site to the _site directory
+          publish_dir: ./ # Deploy the root directory
