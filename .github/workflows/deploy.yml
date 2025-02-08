@@ -1,4 +1,4 @@
-name: CI Workflow - Check for submitForm()
+name: CI Workflow - Open Website on Success/Error
 
 # Trigger the workflow on push to the main branch
 on:
@@ -8,7 +8,7 @@ on:
 
 # Jobs to run
 jobs:
-  check-submit-form:
+  check-and-display:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,12 +16,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Check if submitForm() exists in script.js
+      # Step 2: Simulate a task (e.g., check for submitForm())
       - name: Check for submitForm()
+        id: check-submit-form
         run: |
           if grep -q "function submitForm()" script.js; then
             echo "submitForm() function found in script.js."
+            echo "::set-output name=status::success"
           else
             echo "::error::submitForm() function not found in script.js!"
+            echo "::set-output name=status::failure"
             exit 1 # Fail the workflow
+          fi
+
+      # Step 3: Display website link based on status
+      - name: Display website link
+        run: |
+          if [[ "${{ steps.check-submit-form.outputs.status }}" == "success" ]]; then
+            echo "🎉 Success! Visit the congrats website: https://example.com/congrats"
+          else
+            echo "❌ Error! Visit the error website: https://example.com/error"
           fi
