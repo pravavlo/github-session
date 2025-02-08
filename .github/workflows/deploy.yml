@@ -1,35 +1,29 @@
-name: CI Workflow
+name: CI/CD Pipeline for script.js
 
+# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
       - main
 
+# Jobs to run
 jobs:
-  create-file:
+  validate-script:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PAT }} # Use the PAT for authentication
 
-      # Step 2: Create or update the text file
-      - name: Create or update text file
+      # Step 2: Validate script.js for invalid variable names
+      - name: Validate script.js
+        id: validate-script
         run: |
-          if [ -f "action-status.txt" ]; then
-            echo "GitHub Action ran again" >> action-status.txt
+          echo "Checking script.js for invalid variable names..."
+          if grep -E '\b[0-9]+\w*\b|\W+\w*\b' script.js; then
+            echo "::error::Invalid variable names found in script.js! Variables cannot start with numbers or contain special characters."
+            exit 1 # Fail the workflow
           else
-            echo "GitHub Action ran successfully" > action-status.txt
+            echo "No invalid variable names found in script.js."
           fi
-
-      # Step 3: Commit and push the changes
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add action-status.txt
-          git commit -m "Update action-status.txt"
-          git push origin main
