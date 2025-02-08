@@ -1,20 +1,35 @@
-name: Deploy to GitHub Pages
+name: CI Workflow
 
+# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
       - main
 
+# Jobs to run
 jobs:
-  deploy:
+  create-file:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ # Deploy the root directory
+      # Step 2: Create or update the text file
+      - name: Create or update text file
+        run: |
+          if [ -f "action-status.txt" ]; then
+            echo "GitHub Action ran again" >> action-status.txt
+          else
+            echo "GitHub Action ran successfully" > action-status.txt
+          fi
+
+      # Step 3: Commit and push the changes (optional)
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add action-status.txt
+          git commit -m "Update action-status.txt"
+          git push
